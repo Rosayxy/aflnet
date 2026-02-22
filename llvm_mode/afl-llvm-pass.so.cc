@@ -44,9 +44,10 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Pass.h"
 #include "llvm/Support/Debug.h"
 
-#if LLVM_VERSION_MAJOR < 18
+#if LLVM_VERSION_MAJOR < 11
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #else
 #include "llvm/IR/PassManager.h"
@@ -185,7 +186,7 @@ namespace {
 
   }
 
-#if LLVM_VERSION_MAJOR < 18
+#if LLVM_VERSION_MAJOR < 11
 
   class AFLCoverage : public ModulePass {
 
@@ -218,7 +219,7 @@ static RegisterStandardPasses RegisterAFLPass(
 static RegisterStandardPasses RegisterAFLPass0(
     PassManagerBuilder::EP_EnabledOnOptLevel0, registerAFLPass);
 
-#else  /* LLVM_VERSION_MAJOR >= 18 */
+#else  /* LLVM_VERSION_MAJOR >= 11 */
 
   struct AFLCoverageNewPM : public PassInfoMixin<AFLCoverageNewPM> {
 

@@ -51,8 +51,8 @@ endif
 # probably better.
 
 ifeq "$(origin CC)" "default"
-  CC         = clang
-  CXX        = clang++
+  CC         = clang-15
+  CXX        = clang++-15
 endif
 
 ifndef AFL_TRACE_PC
